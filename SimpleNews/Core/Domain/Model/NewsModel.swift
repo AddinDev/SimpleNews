@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct NewsModel: Identifiable {
+struct NewsModel: Identifiable, Equatable {
   let id: String
   let source: String
   let author: String

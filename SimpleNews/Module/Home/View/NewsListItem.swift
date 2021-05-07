@@ -19,6 +19,7 @@ struct NewsListItem: View {
         title
         desc
       }
+      spacer
     }
     .padding(.vertical, 10)
     .padding(.horizontal)
@@ -35,6 +36,7 @@ extension NewsListItem {
           .resizable()
           .aspectRatio(contentMode: .fit)
           .frame(width: 75, height: 75)
+          
       } else {
         WebImage(url: URL(string: news.urlToImage)!)
           .resizable()
@@ -58,8 +60,12 @@ extension NewsListItem {
     Text(news.articleDescription)
       .font(.system(size: 11))
       .fontWeight(.regular)
-      .foregroundColor(Color(.systemGray3))
+      .foregroundColor(Color(.systemGray))
       .lineLimit(2)
+  }
+  
+  var spacer: some View {
+    Spacer()
   }
   
 }
