@@ -26,20 +26,8 @@ struct HomeView: View {
 extension HomeView {
   
   var content: some View {
-    Group {
-      if presenter.isLoading {
-        loadingIndicator
-      } else if presenter.isError {
-        errorIndicator
-      } else {
-        view
-      }
-    }
-  }
-  
-  var view: some View {
     ScrollView {
-      VStack {
+      LazyVStack {
         //        HStack {
         //          Text("Articles")
         //            .padding(.bottom, -10)
@@ -47,25 +35,41 @@ extension HomeView {
         //        }
         //        .padding(.horizontal)
         //        .padding(.vertical, 0)
-        list
+        topics
+        articles
       }
     }
   }
   
-  var list: some View {
-    ForEach(presenter.news) { news in
-      VStack(alignment: .leading) {
-        if presenter.news.firstIndex(of: news) == 0 {
-          Text("Articles")
-            .padding(.leading, 20)
-            .padding(.vertical, 0)
-            .padding(.bottom, -10)
+  var topics: some View {
+    HStack {
+      TopicBlockItem(topic: "Orang Sakit")
+      TopicBlockItem(topic: "Kopit Karena Cina")
+    }
+    .padding(.bottom)
+  }
+  
+  var articles: some View {
+    Group {
+      if presenter.isLoading {
+        loadingIndicator
+      } else if presenter.isError {
+        errorIndicator
+      } else {
+        ForEach(presenter.news) { news in
+          VStack(alignment: .leading) {
+            if presenter.news.firstIndex(of: news) == 0 {
+              Text("Articles")
+                .padding(.leading, 20)
+                .padding(.vertical, 0)
+                .padding(.bottom, -10)
+            }
+            NewsListItem(news: news)
+          }
         }
-        NewsListItem(news: news)
+        .listStyle(PlainListStyle())
       }
     }
-    .listStyle(PlainListStyle())
-    .padding(.vertical, 0)
   }
   
   var spacer: some View {

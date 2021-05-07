@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		04A8479726452B140038A464 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 04A8479626452B140038A464 /* SDWebImageSwiftUI */; };
 		04A8479926452C600038A464 /* NewsListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A8479826452C600038A464 /* NewsListItem.swift */; };
+		04A8479B26453C6E0038A464 /* TopicBlockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A8479A26453C6E0038A464 /* TopicBlockItem.swift */; };
 		04EC5E822644C0E400E4EC74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC5E812644C0E400E4EC74 /* AppDelegate.swift */; };
 		04EC5E842644C0E400E4EC74 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC5E832644C0E400E4EC74 /* SceneDelegate.swift */; };
 		04EC5E862644C0E400E4EC74 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC5E852644C0E400E4EC74 /* ContentView.swift */; };
@@ -49,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		04A8479826452C600038A464 /* NewsListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListItem.swift; sourceTree = "<group>"; };
+		04A8479A26453C6E0038A464 /* TopicBlockItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicBlockItem.swift; sourceTree = "<group>"; };
 		04EC5E7E2644C0E400E4EC74 /* SimpleNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04EC5E812644C0E400E4EC74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04EC5E832644C0E400E4EC74 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 			children = (
 				04EC5EDD2644CD4400E4EC74 /* HomeView.swift */,
 				04A8479826452C600038A464 /* NewsListItem.swift */,
+				04A8479A26453C6E0038A464 /* TopicBlockItem.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -497,6 +500,7 @@
 				04EC5E822644C0E400E4EC74 /* AppDelegate.swift in Sources */,
 				04EC5EC82644C47100E4EC74 /* RemoteDataSource.swift in Sources */,
 				04EC5ED12644C83600E4EC74 /* NewsMapper.swift in Sources */,
+				04A8479B26453C6E0038A464 /* TopicBlockItem.swift in Sources */,
 				04EC5EC62644C44B00E4EC74 /* NewsResponse.swift in Sources */,
 				04A8479926452C600038A464 /* NewsListItem.swift in Sources */,
 				04EC5ED72644CC9700E4EC74 /* Injection.swift in Sources */,
