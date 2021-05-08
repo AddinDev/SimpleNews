@@ -1,32 +1,34 @@
 //
-//  HomePresenter.swift
+//  TopNewsPresenter.swift
 //  SimpleNews
 //
-//  Created by addin on 07/05/21.
+//  Created by addin on 08/05/21.
 //
 
-import SwiftUI
+import Foundation
 import Combine
 
-class HomePresenter: ObservableObject {
+class TopNewsPresenter: ObservableObject {
   
-  private let useCase: HomeUseCase
-  private let router = HomeRouter()
+  private let useCase: TopNewsUseCase
+  let topic: String
+  //  private let router = HomeRouter()
   
   @Published var news: [NewsModel] = []
   @Published var isLoading = false
   @Published var isError = false
   @Published var errorMessage = ""
   
-  init(useCase: HomeUseCase) {
+  init(useCase: TopNewsUseCase, topic: String) {
     self.useCase = useCase
+    self.topic = topic
   }
   
   private var cancellables: Set<AnyCancellable> = []
   
   func getNews() {
     self.isLoading = true
-    self.useCase.getNews()
+    self.useCase.getTopNews(topic)
       .receive(on: RunLoop.main)
       .sink { completion in
         switch completion {
@@ -40,15 +42,6 @@ class HomePresenter: ObservableObject {
       } receiveValue: { news in
         self.news = news
       }.store(in: &cancellables)
-  }
-  
-  func linkToTopic<Content: View>
-  (for topic: String,
-   @ViewBuilder content: () -> Content
-  ) -> some View {
-    NavigationLink(destination:
-      router.makeTopNewsView(topic)
-    ) { content() }
   }
   
 }

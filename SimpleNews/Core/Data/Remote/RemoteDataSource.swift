@@ -11,6 +11,7 @@ import Combine
 
 protocol RemoteDataSourceProtocol {
   func getNews() -> AnyPublisher<[NewsResponse], Error>
+  func getTopNews(_ topic: String) -> AnyPublisher<[NewsResponse], Error>
 }
 
 class RemoteDataSource {
@@ -25,7 +26,7 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
   func getNews() -> AnyPublisher<[NewsResponse], Error> {
     print("getting news")
     return Future<[NewsResponse], Error> { completion in
-      guard let url = URL(string: "https://newsapi.org/v2/top-headlines?country=id&apiKey=5b0cc15b1d0b473597daa6bf54ac5348") else { return }
+      guard let url = URL(string: Api.homeApi + Api.key) else { return }
       AF.request(url)
         .validate()
         .responseDecodable(of: RemoteResponse.self) { response in
@@ -41,5 +42,24 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
         }
     }.eraseToAnyPublisher()
   }
+  
+  func getTopNews(_ topic: String) -> AnyPublisher<[NewsResponse], Error> {
+    print("getting top news")
+    return Future<[NewsResponse], Error> { completion in
+      guard let url = URL(string: Api.topNewsApi + topic + Api.key) else { return }
+      AF.request(url)
+        .validate()
+        .responseDecodable(of: RemoteResponse.self) { response in
+          print(response.result)
+          switch response.result {
+          case .failure(let error):
+            completion(.failure(error))
+            print(error.localizedDescription)
+          case .success(let value):
+            completion(.success(value.news))
+            print(value)
+          }
+        }
+    }.eraseToAnyPublisher()  }
   
 }

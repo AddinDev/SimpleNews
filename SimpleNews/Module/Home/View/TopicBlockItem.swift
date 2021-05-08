@@ -6,14 +6,17 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct TopicBlockItem: View {
   
   var topic: String
+  var imageUrl: String
   
   var body: some View {
     ZStack {
       background
+      image
       gradient
       title
     }
@@ -25,10 +28,15 @@ struct TopicBlockItem: View {
 
 extension TopicBlockItem {
   
-  var background: some View {
+  var image: some View {
     //    Image(systemName: "photo")
-    //      .resizable()
-    Color.yellow
+    WebImage(url: URL(string: imageUrl)!)
+          .resizable()
+//    Color.yellow
+  }
+  
+  var background: some View {
+        Color.yellow
   }
   
   var title: some View {
@@ -36,9 +44,9 @@ extension TopicBlockItem {
       HStack {
         Text(topic)
           .foregroundColor(.white)
-          .font(.system(size: 35))
+          .font(.system(size: 32))
           .fontWeight(.bold)
-          .padding()
+          .padding([.leading, .top])
         spacer
       }
       spacer
@@ -46,7 +54,7 @@ extension TopicBlockItem {
   }
   
   var gradient: some View {
-    LinearGradient(gradient: Gradient(colors: [Color(.clear), Color(.black).opacity(0.7)]), startPoint: .top, endPoint: .bottom)
+    LinearGradient(gradient: Gradient(colors: [Color(.clear), Color("WB").opacity(0.7)]), startPoint: .top, endPoint: .bottom)
   }
   
   var spacer: some View {

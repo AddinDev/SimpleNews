@@ -10,6 +10,7 @@ import Combine
 
 protocol RepositoryProtocol {
   func getNews() -> AnyPublisher<[NewsModel], Error>
+  func getTopNews(_ topic: String) -> AnyPublisher<[NewsModel], Error>
 }
 
 class Repository {
@@ -32,6 +33,12 @@ extension Repository: RepositoryProtocol {
   
   func getNews() -> AnyPublisher<[NewsModel], Error> {
     self.remote.getNews()
+      .map { NewsMapper.responseToModel(for: $0) }
+      .eraseToAnyPublisher()
+  }
+  
+  func getTopNews(_ topic: String) -> AnyPublisher<[NewsModel], Error> {
+    self.remote.getTopNews(topic)
       .map { NewsMapper.responseToModel(for: $0) }
       .eraseToAnyPublisher()
   }
