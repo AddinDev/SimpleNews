@@ -31,14 +31,16 @@ extension NewsListItem {
   
   var image: some View {
     Group {
-      if news.urlToImage == "unknown" {
+      if news.imageUrl == "unknown" {
         Image(systemName: "photo")
+          .renderingMode(.original)
           .resizable()
           .aspectRatio(contentMode: .fit)
           .frame(width: 75, height: 75)
           
       } else {
-        WebImage(url: URL(string: news.urlToImage)!)
+        WebImage(url: URL(string: news.imageUrl)!)
+          .renderingMode(.original)
           .resizable()
           .indicator(.activity)
           .transition(.fade)
@@ -51,16 +53,17 @@ extension NewsListItem {
   
   var title: some View {
     Text(news.title)
+      .foregroundColor(Color("BW"))
       .font(.system(size: 16))
       .fontWeight(.medium)
       .lineLimit(2)
   }
   
   var desc: some View {
-    Text(news.articleDescription)
+    Text(news.description)
+      .foregroundColor(Color(.systemGray))
       .font(.system(size: 11))
       .fontWeight(.regular)
-      .foregroundColor(Color(.systemGray))
       .lineLimit(2)
   }
   
@@ -72,6 +75,6 @@ extension NewsListItem {
 
 struct NewsListItem_Previews: PreviewProvider {
   static var previews: some View {
-    NewsListItem(news: NewsModel(id: "", source: "ASDASDSA", author: "adadin", title: "pesawat terbang kemanamnaa wooOWWOOWOWOWOWOOaaaaaaaaaaaW", articleDescription: "WHHHHHWE Tenandayo ASDADSA DAS D AS DSADASD ASD SDASDASDSADASDSADASDSADSADSASDSDADS", url: "https://1cak.com", urlToImage: "https://pngimg.com/uploads/teacher/teacher_PNG24.png", publishedAt: "123", content: "ASDADSADASDA"))
+    NewsListItem(news: NewsModel(id: "", source: "ASDASDSA", author: "adadin", title: "pesawat terbang kemanamnaa wooOWWOOWOWOWOWOOaaaaaaaaaaaW", description: "WHHHHHWE Tenandayo ASDADSA DAS D AS DSADASD ASD SDASDASDSADASDSADASDSADSADSASDSDADS", url: "https://1cak.com", imageUrl: "https://pngimg.com/uploads/teacher/teacher_PNG24.png", published: "123", content: "ASDADSADASDA"))
   }
 }

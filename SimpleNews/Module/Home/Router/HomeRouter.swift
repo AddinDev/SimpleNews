@@ -15,4 +15,9 @@ class HomeRouter {
     return TopNewsView(presenter: presenter)
   }
   
+  func makeDetailView(_ news: NewsModel) -> some View {
+    let presenter = NewsDetailPresenter(news: news)
+    return NewsDetailView(presenter: presenter)
+  }
+  
 }

@@ -15,10 +15,10 @@ class NewsMapper {
                        source: response.source?.name ?? "unknown",
                        author: response.author ?? "unknown",
                        title: response.title ?? "unknown",
-                       articleDescription: response.articleDescription ?? "unknown",
+                       description: response.articleDescription ?? "unknown",
                        url: response.url ?? "unknown",
-                       urlToImage: response.urlToImage ?? "unknown",
-                       publishedAt: formatDate(response.publishedAt ?? "unknown"),
+                       imageUrl: response.urlToImage ?? "unknown",
+                       published: formatDate(response.publishedAt ?? "unknown"),
                        content: response.content ?? "unknown")
     }
   }
@@ -28,7 +28,8 @@ class NewsMapper {
     dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
     
     let dateFormatterPrint = DateFormatter()
-    dateFormatterPrint.dateFormat = " MM-dd-yyyy HH:mm"
+//    dateFormatterPrint.dateFormat = "HH:mm"
+    dateFormatterPrint.dateFormat = "HH:mm - EEEE, MMM d, yyyy"
     
     if let date = dateFormatterGet.date(from: date) {
       return dateFormatterPrint.string(from: date)

@@ -47,8 +47,18 @@ class HomePresenter: ObservableObject {
    @ViewBuilder content: () -> Content
   ) -> some View {
     NavigationLink(destination:
-      router.makeTopNewsView(topic)
+                    router.makeTopNewsView(topic)
     ) { content() }
+  }
+  
+  func linkToDetail<Content: View>
+  (for news: NewsModel,
+   @ViewBuilder content: () -> Content
+  ) -> some View {
+    NavigationLink(destination:
+                    router.makeDetailView(news)
+    ) { content() }
+    
   }
   
 }

@@ -12,15 +12,16 @@ struct NewsModel: Identifiable, Equatable {
   let source: String
   let author: String
   let title: String
-  let articleDescription: String
+  let description: String
   let url: String
-  let urlToImage: String
-  let publishedAt: String
+  let imageUrl: String
+  let published: String
   let content: String
   
   enum CodingKeys: String, CodingKey {
     case source, author, title
-    case articleDescription = "description"
-    case url, urlToImage, publishedAt, content
+    case url, articleDescription, content
+    case imageUrl = "urlToImage"
+    case published = "publishedAt"
   }
 }

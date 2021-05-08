@@ -74,7 +74,9 @@ extension HomeView {
             if presenter.news.firstIndex(of: news) == 0 {
               articleSection
             }
-            NewsListItem(news: news)
+            presenter.linkToDetail(for: news) {
+              NewsListItem(news: news)
+            }
           }
         }
       }
