@@ -33,9 +33,9 @@ extension NewsListItem {
     Group {
       if news.imageUrl == "unknown" {
         Image(systemName: "photo")
-          .renderingMode(.original)
           .resizable()
           .aspectRatio(contentMode: .fit)
+          .foregroundColor(Color("BW"))
           .frame(width: 75, height: 75)
           
       } else {

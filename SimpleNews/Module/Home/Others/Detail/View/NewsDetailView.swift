@@ -24,11 +24,15 @@ extension NewsDetailView {
   
   var content: some View {
     ScrollView {
-      VStack {
+      VStack(alignment: .leading) {
         image
+        Group {
         title
+        author
         published
         desc
+        }
+        .padding(.horizontal)
       }
     }
   }
@@ -51,32 +55,48 @@ extension NewsDetailView {
           .cornerRadius(5)
       }
     }
+    .padding(.vertical, 0)
   }
   
   var title: some View {
     Text(presenter.news.title)
       .font(.system(size: 25))
       .fontWeight(.bold)
-      .padding(10)
+      .padding(.horizontal, 10)
   }
   
   var desc: some View {
     presenter.linkToDetail {
       Text(presenter.news.content)
         .foregroundColor(Color("BW"))
+        .underline(true, color: .blue)
     }
-    .padding()
-    .padding(.top, 0)
+    .padding(10)
+  }
+  
+  var author: some View {
+    HStack {
+      Text("Author: ")
+        .foregroundColor(Color(.systemGray))
+      Text(presenter.news.author)
+      spacer
+    }
+    .font(.footnote)
+    .padding(.top)
+    .padding(.horizontal)
   }
   
   var published: some View {
     HStack {
-      Text("Published: \(presenter.news.published)")
+      Text("Published: ")
         .foregroundColor(Color(.systemGray))
+        .font(.footnote)
+      Text(presenter.news.published)
         .font(.footnote)
       spacer
     }
     .padding(.vertical, 0)
+    .padding(.bottom)
     .padding(.horizontal)
   }
   
