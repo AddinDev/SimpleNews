@@ -24,7 +24,7 @@ class NewsDetailPresenter: ObservableObject {
   (@ViewBuilder content: () -> Content
   ) -> some View {
     NavigationLink(destination:
-                    router.makeWebView(news.url)
+                    router.makeWebView(news.source, news.url)
     ) { content() }
   }
   

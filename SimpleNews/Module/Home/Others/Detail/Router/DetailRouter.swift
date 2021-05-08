@@ -9,10 +9,10 @@ import SwiftUI
 
 struct DetailRouter {
   
-  func makeWebView(_ url: String) -> some View {
+  func makeWebView(_ source: String, _ url: String) -> some View {
     return
       WebView(url: url)
-      .navigationBarTitle("WebView")
+      .navigationBarTitle(source)
   }
   
 }

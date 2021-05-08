@@ -14,7 +14,7 @@ struct NewsDetailView: View {
   
   var body: some View {
     content
-      .navigationBarTitle("", displayMode: .inline)
+      .navigationBarTitle("🗿", displayMode: .inline)
       .navigationBarItems(trailing: source)
   }
   
@@ -27,10 +27,10 @@ extension NewsDetailView {
       VStack(alignment: .leading) {
         image
         Group {
-        title
-        author
-        published
-        desc
+          title
+          author
+          published
+          desc
         }
         .padding(.horizontal)
       }
@@ -40,11 +40,14 @@ extension NewsDetailView {
   var image: some View {
     Group {
       if presenter.news.imageUrl == "unknown" {
-        Image(systemName: "photo")
-          .resizable()
-          .aspectRatio(contentMode: .fit)
-          .frame(height: 200)
-        
+        HStack {
+          spacer
+          Image(systemName: "photo")
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(height: 200)
+          spacer
+        }
       } else {
         WebImage(url: URL(string: presenter.news.imageUrl)!)
           .resizable()
@@ -82,8 +85,8 @@ extension NewsDetailView {
       spacer
     }
     .font(.footnote)
-    .padding(.top)
     .padding(.horizontal)
+    .padding(.top, 10)
   }
   
   var published: some View {
@@ -96,7 +99,6 @@ extension NewsDetailView {
       spacer
     }
     .padding(.vertical, 0)
-    .padding(.bottom)
     .padding(.horizontal)
   }
   
