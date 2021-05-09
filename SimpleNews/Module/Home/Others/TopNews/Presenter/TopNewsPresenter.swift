@@ -5,14 +5,14 @@
 //  Created by addin on 08/05/21.
 //
 
-import Foundation
+import SwiftUI
 import Combine
 
 class TopNewsPresenter: ObservableObject {
   
   private let useCase: TopNewsUseCase
   let topic: String
-  //  private let router = HomeRouter()
+  private let router = TopNewsRouter()
   
   @Published var news: [NewsModel] = []
   @Published var isLoading = false
@@ -40,8 +40,21 @@ class TopNewsPresenter: ObservableObject {
           self.isLoading = false
         }
       } receiveValue: { news in
-        self.news = news
+        DispatchQueue.main.async {
+          withAnimation {
+            self.news = news
+          }
+        }
       }.store(in: &cancellables)
+  }
+  
+  func linkToDetail<Content: View>
+  (for news: NewsModel,
+   @ViewBuilder content: () -> Content
+  ) -> some View {
+    NavigationLink(destination:
+                    router.makeDetailView(news)
+    ) { content() }
   }
   
 }

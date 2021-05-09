@@ -15,8 +15,9 @@ struct NewsDetailView: View {
   var body: some View {
     content
       .onAppear {
-        //        if 
+        if presenter.videos.count == 0 {
         presenter.getVideos()
+        }
       }
       .navigationBarTitle("🗿", displayMode: .inline)
       .navigationBarItems(trailing: source)
@@ -36,7 +37,8 @@ extension NewsDetailView {
           published
           desc
         }
-        .padding(.horizontal, 7)
+        .padding(.horizontal, 3)
+        videoTitle
         videos
       }
     }
@@ -50,6 +52,7 @@ extension NewsDetailView {
           Image(systemName: "photo")
             .resizable()
             .aspectRatio(contentMode: .fit)
+            .padding()
             .frame(height: 200)
           spacer
         }
@@ -60,7 +63,7 @@ extension NewsDetailView {
           .transition(.fade)
           .aspectRatio(contentMode: .fill)
           .frame(height: 200)
-          .cornerRadius(5)
+          .clipped()
       }
     }
     .padding(.vertical, 0)
@@ -71,11 +74,12 @@ extension NewsDetailView {
       .font(.system(size: 25))
       .fontWeight(.bold)
       .padding(.horizontal, 10)
+      .padding(.top, 10)
   }
   
   var desc: some View {
     presenter.linkToDetail {
-      Text(presenter.news.description)
+      Text(presenter.news.description == "unknown" ? "Description Not Available" : presenter.news.description)
         .foregroundColor(Color("BW"))
         .underline(true, color: .blue)
     }
@@ -111,6 +115,15 @@ extension NewsDetailView {
     Text(presenter.news.source)
   }
   
+  var videoTitle: some View {
+    Text("Related Videos")
+      .font(.callout)
+      .bold()
+      .padding(.leading, 20)
+      .padding(.vertical, 0)
+      .padding(.bottom, -15)
+  }
+  
   var videos: some View {
     Group {
       if presenter.isLoading {
@@ -127,10 +140,13 @@ extension NewsDetailView {
         spacer
         }
         .padding(.top)
+      } else if presenter.isEmpty {
+        emptyIndicator
       } else {
         ForEach(presenter.videos) { video in
           VideoListItem(video: video)
         }
+        .padding(.vertical, 0)
       }
     }
   }
@@ -154,6 +170,15 @@ extension NewsDetailView {
         .foregroundColor(.red)
       Text(presenter.errorMessage)
     }
+  }
+  
+  var emptyIndicator: some View {
+    HStack {
+      spacer
+      Text("No Video Found")
+      spacer
+    }
+    .padding()
   }
   
 }

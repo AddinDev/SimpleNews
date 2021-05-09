@@ -26,22 +26,27 @@ struct TopNewsView: View {
 extension TopNewsView {
   
   var content: some View {
+    ScrollView {
+      LazyVStack {
+        news
+      }
+    }
+  }
+  
+  var news: some View {
     Group {
       if presenter.isLoading {
         loadingIndicator
       } else if presenter.isError {
         errorIndicator
       } else {
-        list
+    ForEach(presenter.news) { news in
+      presenter.linkToDetail(for: news) {
+        NewsListItem(news: news)
       }
     }
-  }
-  
-  var list: some View {
-    List(presenter.news) { news in
-      NewsListItem(news: news)
+      }
     }
-    .listStyle(PlainListStyle())
   }
   
   var title: String {

@@ -99,8 +99,10 @@ extension HomeView {
   var articleSection: some View {
     Text("Articles")
       .font(.callout)
+      .bold()
       .padding(.leading, 20)
       .padding(.vertical, 0)
+      .padding(.top, 7)
       .padding(.bottom, -10)
 
   }

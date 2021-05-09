@@ -38,7 +38,11 @@ class HomePresenter: ObservableObject {
           self.isLoading = false
         }
       } receiveValue: { news in
-        self.news = news
+        DispatchQueue.main.async {
+          withAnimation {
+            self.news = news
+          }
+        }
       }.store(in: &cancellables)
   }
   
@@ -58,7 +62,6 @@ class HomePresenter: ObservableObject {
     NavigationLink(destination:
                     router.makeDetailView(news)
     ) { content() }
-    
   }
   
 }

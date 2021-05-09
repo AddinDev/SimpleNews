@@ -13,12 +13,13 @@ class NewsDetailPresenter: ObservableObject {
   private let router = DetailRouter()
   
   private let useCase: NewsDetailUseCase
-    
+  
   @Published var news: NewsModel
   @Published var videos: [VideoModel] = []
   @Published var isLoading = false
   @Published var isError = false
   @Published var errorMessage = ""
+  @Published var isEmpty = false
   
   private var cancellables: Set<AnyCancellable> = []
   
@@ -42,7 +43,15 @@ class NewsDetailPresenter: ObservableObject {
           self.isLoading = false
         }
       } receiveValue: { videos in
-        self.videos = videos
+        if videos.count != 0 {
+          DispatchQueue.main.async {
+            withAnimation {
+              self.videos = videos
+            }
+          }
+        } else {
+          self.isEmpty = true
+        }
       }.store(in: &cancellables)
   }
   

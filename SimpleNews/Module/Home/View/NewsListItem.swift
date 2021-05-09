@@ -37,7 +37,7 @@ extension NewsListItem {
           .aspectRatio(contentMode: .fit)
           .foregroundColor(Color("BW"))
           .frame(width: 75, height: 75)
-          
+        
       } else {
         WebImage(url: URL(string: news.imageUrl)!)
           .renderingMode(.original)
@@ -60,11 +60,15 @@ extension NewsListItem {
   }
   
   var desc: some View {
-    Text(news.description)
-      .foregroundColor(Color(.systemGray))
-      .font(.system(size: 11))
-      .fontWeight(.regular)
-      .lineLimit(2)
+    Group {
+      if news.description != "unknown" {
+        Text(news.description)
+          .foregroundColor(Color(.systemGray))
+          .font(.system(size: 11))
+          .fontWeight(.regular)
+          .lineLimit(2)
+      }
+    }
   }
   
   var spacer: some View {
