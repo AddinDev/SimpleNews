@@ -11,6 +11,7 @@ import Combine
 protocol RepositoryProtocol {
   func getNews() -> AnyPublisher<[NewsModel], Error>
   func getTopNews(_ topic: String) -> AnyPublisher<[NewsModel], Error>
+  func getYoutubeVideos(pageToken: String, topic: String) -> AnyPublisher<[VideoModel], Error>
 }
 
 class Repository {
@@ -41,6 +42,13 @@ extension Repository: RepositoryProtocol {
     self.remote.getTopNews(topic)
       .map { NewsMapper.responseToModel(for: $0) }
       .eraseToAnyPublisher()
+  }
+  
+  func getYoutubeVideos(pageToken: String, topic: String) -> AnyPublisher<[VideoModel], Error> {
+    self.remote.getYoutubeVideos(pageToken: pageToken, topic: topic)
+      .map { VideoMapper.responseToModel(for: $0) }
+      .eraseToAnyPublisher()
+    
   }
   
 }

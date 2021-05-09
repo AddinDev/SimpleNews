@@ -11,6 +11,11 @@
 		041BAB2626467A3E0052DB2E /* NewsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041BAB2526467A3E0052DB2E /* NewsDetailView.swift */; };
 		041BAB2826467C0E0052DB2E /* NewsDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041BAB2726467C0E0052DB2E /* NewsDetailPresenter.swift */; };
 		041BAB2B264682F00052DB2E /* DetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041BAB2A264682F00052DB2E /* DetailRouter.swift */; };
+		043E12BF2647458300C7879E /* VideoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E12BE2647458300C7879E /* VideoResponse.swift */; };
+		043E12C1264746BB00C7879E /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E12C0264746BB00C7879E /* VideoModel.swift */; };
+		043E12C326474CFC00C7879E /* VideoMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E12C226474CFC00C7879E /* VideoMapper.swift */; };
+		043E12C52647510C00C7879E /* NewsDetailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043E12C42647510C00C7879E /* NewsDetailUseCase.swift */; };
+		0477E61F2647B403006F2CBB /* VideoListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0477E61E2647B403006F2CBB /* VideoListItem.swift */; };
 		047D5427264650CA005095EC /* TopNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047D5426264650CA005095EC /* TopNewsView.swift */; };
 		047D542C2646515A005095EC /* ApiCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047D542B2646515A005095EC /* ApiCall.swift */; };
 		047D542E26465260005095EC /* TopNewsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047D542D26465260005095EC /* TopNewsPresenter.swift */; };
@@ -62,6 +67,11 @@
 		041BAB2526467A3E0052DB2E /* NewsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailView.swift; sourceTree = "<group>"; };
 		041BAB2726467C0E0052DB2E /* NewsDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailPresenter.swift; sourceTree = "<group>"; };
 		041BAB2A264682F00052DB2E /* DetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRouter.swift; sourceTree = "<group>"; };
+		043E12BE2647458300C7879E /* VideoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoResponse.swift; sourceTree = "<group>"; };
+		043E12C0264746BB00C7879E /* VideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoModel.swift; sourceTree = "<group>"; };
+		043E12C226474CFC00C7879E /* VideoMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoMapper.swift; sourceTree = "<group>"; };
+		043E12C42647510C00C7879E /* NewsDetailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailUseCase.swift; sourceTree = "<group>"; };
+		0477E61E2647B403006F2CBB /* VideoListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoListItem.swift; sourceTree = "<group>"; };
 		047D5426264650CA005095EC /* TopNewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopNewsView.swift; sourceTree = "<group>"; };
 		047D542B2646515A005095EC /* ApiCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCall.swift; sourceTree = "<group>"; };
 		047D542D26465260005095EC /* TopNewsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopNewsPresenter.swift; sourceTree = "<group>"; };
@@ -134,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				041BAB2526467A3E0052DB2E /* NewsDetailView.swift */,
+				0477E61E2647B403006F2CBB /* VideoListItem.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -373,6 +384,7 @@
 			isa = PBXGroup;
 			children = (
 				04EC5ECC2644C61600E4EC74 /* NewsModel.swift */,
+				043E12C0264746BB00C7879E /* VideoModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -382,6 +394,7 @@
 			children = (
 				04EC5ED22644CB3E00E4EC74 /* HomeUseCase.swift */,
 				047D542F26465544005095EC /* TopNewsUseCase.swift */,
+				043E12C42647510C00C7879E /* NewsDetailUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -407,6 +420,7 @@
 			isa = PBXGroup;
 			children = (
 				04EC5EC52644C44B00E4EC74 /* NewsResponse.swift */,
+				043E12BE2647458300C7879E /* VideoResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -422,6 +436,7 @@
 			isa = PBXGroup;
 			children = (
 				04EC5ED02644C83600E4EC74 /* NewsMapper.swift */,
+				043E12C226474CFC00C7879E /* VideoMapper.swift */,
 			);
 			path = Mapper;
 			sourceTree = "<group>";
@@ -623,9 +638,12 @@
 				041BAB2426467A050052DB2E /* WebView.swift in Sources */,
 				04EC5E822644C0E400E4EC74 /* AppDelegate.swift in Sources */,
 				04EC5EC82644C47100E4EC74 /* RemoteDataSource.swift in Sources */,
+				043E12BF2647458300C7879E /* VideoResponse.swift in Sources */,
 				04EC5ED12644C83600E4EC74 /* NewsMapper.swift in Sources */,
 				047D5432264655CA005095EC /* HomeRouter.swift in Sources */,
 				04A8479B26453C6E0038A464 /* TopicBlockItem.swift in Sources */,
+				043E12C1264746BB00C7879E /* VideoModel.swift in Sources */,
+				043E12C52647510C00C7879E /* NewsDetailUseCase.swift in Sources */,
 				04EC5EC62644C44B00E4EC74 /* NewsResponse.swift in Sources */,
 				04A8479926452C600038A464 /* NewsListItem.swift in Sources */,
 				04EC5ED72644CC9700E4EC74 /* Injection.swift in Sources */,
@@ -637,10 +655,12 @@
 				047D5427264650CA005095EC /* TopNewsView.swift in Sources */,
 				04EC5E862644C0E400E4EC74 /* ContentView.swift in Sources */,
 				04EC5EDE2644CD4400E4EC74 /* HomeView.swift in Sources */,
+				043E12C326474CFC00C7879E /* VideoMapper.swift in Sources */,
 				047D542E26465260005095EC /* TopNewsPresenter.swift in Sources */,
 				047D543026465544005095EC /* TopNewsUseCase.swift in Sources */,
 				04EC5ED52644CB5A00E4EC74 /* Repository.swift in Sources */,
 				047D542C2646515A005095EC /* ApiCall.swift in Sources */,
+				0477E61F2647B403006F2CBB /* VideoListItem.swift in Sources */,
 				04EC5EDC2644CD2C00E4EC74 /* HomePresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -14,6 +14,10 @@ struct NewsDetailView: View {
   
   var body: some View {
     content
+      .onAppear {
+        //        if 
+        presenter.getVideos()
+      }
       .navigationBarTitle("🗿", displayMode: .inline)
       .navigationBarItems(trailing: source)
   }
@@ -24,7 +28,7 @@ extension NewsDetailView {
   
   var content: some View {
     ScrollView {
-      VStack(alignment: .leading) {
+      LazyVStack(alignment: .leading) {
         image
         Group {
           title
@@ -32,7 +36,8 @@ extension NewsDetailView {
           published
           desc
         }
-        .padding(.horizontal)
+        .padding(.horizontal, 7)
+        videos
       }
     }
   }
@@ -70,7 +75,7 @@ extension NewsDetailView {
   
   var desc: some View {
     presenter.linkToDetail {
-      Text(presenter.news.content)
+      Text(presenter.news.description)
         .foregroundColor(Color("BW"))
         .underline(true, color: .blue)
     }
@@ -106,8 +111,49 @@ extension NewsDetailView {
     Text(presenter.news.source)
   }
   
+  var videos: some View {
+    Group {
+      if presenter.isLoading {
+        HStack {
+        spacer
+        loadingIndicator
+        spacer
+        }
+        .padding(.top)
+      } else if presenter.isError {
+        HStack {
+        spacer
+        errorIndicator
+        spacer
+        }
+        .padding(.top)
+      } else {
+        ForEach(presenter.videos) { video in
+          VideoListItem(video: video)
+        }
+      }
+    }
+  }
+  
   var spacer: some View {
     Spacer()
+  }
+  
+  var loadingIndicator: some View {
+    VStack {
+      Text("Loading...")
+      ProgressView()
+        .progressViewStyle(CircularProgressViewStyle())
+    }
+  }
+  
+  var errorIndicator: some View {
+    VStack {
+      Text("Error")
+        .bold()
+        .foregroundColor(.red)
+      Text(presenter.errorMessage)
+    }
   }
   
 }

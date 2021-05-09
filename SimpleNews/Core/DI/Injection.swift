@@ -23,4 +23,8 @@ class Injection {
     return TopNewsInteractor(repository: provideRepo())
   }
   
+  func provideNewsDetail() -> NewsDetailUseCase {
+    return NewsDetailInteractor(repository: provideRepo())
+  }
+  
 }

@@ -86,7 +86,7 @@ extension HomeView {
   var topicSection: some View {
     HStack {
       VStack(alignment: .leading) {
-      Text("Topics")
+      Text("Popular Topics")
         .fontWeight(.medium)
       Text("These are the popular topics for now.")
     }

@@ -12,6 +12,7 @@ import Combine
 protocol RemoteDataSourceProtocol {
   func getNews() -> AnyPublisher<[NewsResponse], Error>
   func getTopNews(_ topic: String) -> AnyPublisher<[NewsResponse], Error>
+  func getYoutubeVideos(pageToken: String, topic: String) -> AnyPublisher<[VideoResponse], Error>
 }
 
 class RemoteDataSource {
@@ -22,22 +23,20 @@ class RemoteDataSource {
 }
 
 extension RemoteDataSource: RemoteDataSourceProtocol {
-  
+
   func getNews() -> AnyPublisher<[NewsResponse], Error> {
     print("getting news")
     return Future<[NewsResponse], Error> { completion in
-      guard let url = URL(string: Api.homeApi + Api.key) else { return }
+      guard let url = URL(string: Api.homeApi + Api.newsKey) else { return }
       AF.request(url)
         .validate()
         .responseDecodable(of: RemoteResponse.self) { response in
-          print(response.result)
           switch response.result {
           case .failure(let error):
             completion(.failure(error))
             print(error.localizedDescription)
           case .success(let value):
             completion(.success(value.news))
-            print(value)
           }
         }
     }.eraseToAnyPublisher()
@@ -46,20 +45,39 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
   func getTopNews(_ topic: String) -> AnyPublisher<[NewsResponse], Error> {
     print("getting top news")
     return Future<[NewsResponse], Error> { completion in
-      guard let url = URL(string: Api.topNewsApi + topic + Api.key) else { return }
+      guard let url = URL(string: Api.topNewsApi + topic + Api.newsKey) else { return }
       AF.request(url)
         .validate()
         .responseDecodable(of: RemoteResponse.self) { response in
-          print(response.result)
           switch response.result {
           case .failure(let error):
             completion(.failure(error))
             print(error.localizedDescription)
           case .success(let value):
             completion(.success(value.news))
-            print(value)
           }
         }
-    }.eraseToAnyPublisher()  }
+    }.eraseToAnyPublisher()
+  }
   
+  func getYoutubeVideos(pageToken: String, topic: String) -> AnyPublisher<[VideoResponse], Error> {
+    print("getting videos")
+    return Future<[VideoResponse], Error> { completion in
+      guard let url = URL(string: Api.youtubeApi + Api.youtubeToken + pageToken + Api.youtubeSearch + topic + Api.youtubeKey) else { return print("what") }
+      print(url)
+      AF.request(url)
+        .validate()
+        .responseDecodable(of: YoutubeResponse.self) { response in
+          print("result: \(response.result)")
+          switch response.result {
+          case .failure(let error):
+            completion(.failure(error))
+            print(error.localizedDescription)
+          case .success(let value):
+            completion(.success(value.items))
+          }
+        }
+    }.eraseToAnyPublisher()
+  }
+
 }

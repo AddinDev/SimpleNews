@@ -16,7 +16,8 @@ class HomeRouter {
   }
   
   func makeDetailView(_ news: NewsModel) -> some View {
-    let presenter = NewsDetailPresenter(news: news)
+    let useCase = Injection.init().provideNewsDetail()
+    let presenter = NewsDetailPresenter(useCase: useCase, news: news)
     return NewsDetailView(presenter: presenter)
   }
   
