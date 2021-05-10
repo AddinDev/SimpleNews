@@ -16,7 +16,7 @@ struct NewsDetailView: View {
     content
       .onAppear {
         if presenter.videos.count == 0 {
-        presenter.getVideos()
+          presenter.getVideos()
         }
       }
       .navigationBarTitle("🗿", displayMode: .inline)
@@ -128,23 +128,28 @@ extension NewsDetailView {
     Group {
       if presenter.isLoading {
         HStack {
-        spacer
-        loadingIndicator
-        spacer
+          spacer
+          loadingIndicator
+          spacer
         }
         .padding(.top)
       } else if presenter.isError {
         HStack {
-        spacer
-        errorIndicator
-        spacer
+          spacer
+          errorIndicator
+          spacer
         }
         .padding(.top)
       } else if presenter.isEmpty {
         emptyIndicator
       } else {
         ForEach(presenter.videos) { video in
-          VideoListItem(video: video)
+            presenter.makeYoutube(video: video) {
+              VideoListItem(video: video)
+            }
+            //              .sheet(isPresented: $showVideo) {
+            //                presenter.makeYoutube(video: video, isShow: $showVideo)
+            //              }
         }
         .padding(.vertical, 0)
       }

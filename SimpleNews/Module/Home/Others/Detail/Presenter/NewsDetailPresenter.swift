@@ -63,6 +63,15 @@ class NewsDetailPresenter: ObservableObject {
     return word
   }
   
+  func makeYoutube<Content: View>
+  (video: VideoModel,
+   @ViewBuilder content: () -> Content
+  ) -> some View {
+    NavigationLink(destination:
+                    router.makeYoutubeView(video)
+    ) { content() }
+  }
+  
   func linkToDetail<Content: View>
   (@ViewBuilder content: () -> Content
   ) -> some View {

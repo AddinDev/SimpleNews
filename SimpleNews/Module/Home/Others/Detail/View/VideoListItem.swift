@@ -45,6 +45,7 @@ extension VideoListItem {
   var title: some View {
     Text(video.title)
       .fontWeight(.medium)
+      .foregroundColor(Color("BW"))
       .lineLimit(3)
       .font(.system(size: 15))
   }
@@ -52,8 +53,8 @@ extension VideoListItem {
   var description: some View {
     Text(video.description)
       .font(.system(size: 13))
-      .lineLimit(2)
       .foregroundColor(Color(.systemGray))
+      .lineLimit(2)
   }
   
   var spacer: some View {

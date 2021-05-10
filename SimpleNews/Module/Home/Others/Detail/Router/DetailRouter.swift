@@ -9,10 +9,15 @@ import SwiftUI
 
 struct DetailRouter {
   
-  func makeWebView(_ source: String, _ url: String) -> some View {
+  func makeWebView(_ title: String, _ url: String) -> some View {
     return
       WebView(url: url)
-      .navigationBarTitle(source)
+      .navigationBarTitle(title)
+  }
+  
+  func makeYoutubeView(_ video: VideoModel) -> some View {
+    return
+      YoutubeView(video: video)
   }
   
 }
