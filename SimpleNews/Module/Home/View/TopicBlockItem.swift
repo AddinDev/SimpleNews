@@ -31,7 +31,11 @@ extension TopicBlockItem {
   var image: some View {
     //    Image(systemName: "photo")
     WebImage(url: URL(string: imageUrl)!)
-          .resizable()
+      .renderingMode(.original)
+      .resizable()
+      .indicator(.activity)
+      .transition(.fade)
+      .scaledToFit()
 //    Color.yellow
   }
   

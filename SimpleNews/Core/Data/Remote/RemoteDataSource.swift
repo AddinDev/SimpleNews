@@ -11,7 +11,7 @@ import Combine
 
 protocol RemoteDataSourceProtocol {
   func getNews() -> AnyPublisher<[NewsResponse], Error>
-  func getTopNews(_ topic: String) -> AnyPublisher<[NewsResponse], Error>
+  func searchNews(_ word: String) -> AnyPublisher<[NewsResponse], Error>
   func getYoutubeVideos(pageToken: String, topic: String) -> AnyPublisher<[VideoResponse], Error>
 }
 
@@ -42,10 +42,9 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
     }.eraseToAnyPublisher()
   }
   
-  func getTopNews(_ topic: String) -> AnyPublisher<[NewsResponse], Error> {
-    print("getting top news")
+  func searchNews(_ word: String) -> AnyPublisher<[NewsResponse], Error> {
     return Future<[NewsResponse], Error> { completion in
-      guard let url = URL(string: Api.topNewsApi + topic + Api.newsKey) else { return }
+      guard let url = URL(string: Api.searchNewsApi + word + Api.newsKey) else { return }
       AF.request(url)
         .validate()
         .responseDecodable(of: RemoteResponse.self) { response in

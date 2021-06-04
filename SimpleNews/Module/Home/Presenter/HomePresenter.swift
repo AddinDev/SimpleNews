@@ -64,4 +64,12 @@ class HomePresenter: ObservableObject {
     ) { content() }
   }
   
+  func linkToSearch<Content: View>
+  (@ViewBuilder content: () -> Content
+  ) -> some View {
+    NavigationLink(destination:
+                    router.makeSearchView()
+    ) { content() }
+  }
+  
 }

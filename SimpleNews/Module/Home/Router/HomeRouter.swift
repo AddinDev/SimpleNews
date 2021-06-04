@@ -21,4 +21,10 @@ class HomeRouter {
     return NewsDetailView(presenter: presenter)
   }
   
+  func makeSearchView() -> some View {
+    let useCase = Injection.init().provideSearchNews()
+    let presenter = SearchNewsPresenter(useCase: useCase)
+    return SearchNewsView(presenter: presenter)
+  }
+  
 }

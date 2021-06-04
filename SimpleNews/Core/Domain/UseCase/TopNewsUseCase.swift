@@ -25,7 +25,7 @@ class TopNewsInteractor {
 extension TopNewsInteractor: TopNewsUseCase {
   
   func getTopNews(_ topic: String) -> AnyPublisher<[NewsModel], Error> {
-    self.repository.getTopNews(topic)
+    self.repository.searchNews(topic)
   }
   
 }

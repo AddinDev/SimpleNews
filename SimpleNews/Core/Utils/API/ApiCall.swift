@@ -17,7 +17,8 @@ struct Api {
   
   static let homeApi = "\(newsBaseUrl)\(topHeadlines)"
   static let topNewsApi = "\(newsBaseUrl)\(newsSearch)"
-  
+  static let searchNewsApi = "\(newsBaseUrl)\(newsSearch)"
+
   static let youtubeKey = "&type=video&key=AIzaSyD-6C-J66zB693n-r_n6BFVDSEoyRglf_0"
   
   private static let youtubeBaseUrl = "https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=10"
