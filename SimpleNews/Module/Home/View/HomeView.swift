@@ -11,6 +11,7 @@ struct HomeView: View {
   
   @ObservedObject var presenter: HomePresenter
   @State var keyword = ""
+  
   var rows: [GridItem] = [
     .init(.flexible(minimum: 50, maximum: UIScreen.main.bounds.width / 2 - 20)),
     .init(.flexible(minimum: 50, maximum: UIScreen.main.bounds.width / 2 - 20))
@@ -82,16 +83,11 @@ extension HomeView {
           }
         }
         presenter.linkToSearch {
-          TopicBlockItem(topic: "Search",
+          TopicBlockItem(topic: "Search Topics",
                          imageUrl: "https://vignette.wikia.nocookie.net/dogelore/images/2/26/Walter.png")
         }
       }
     }
-    //    HStack {
-    //      TopicBlockItem(topic: "Orang Sakit", imageUrl: "https://img.pngio.com/doge-bread-doge-head-png-1024_1024.png")
-    //      TopicBlockItem(topic: "Kopit Karena Cina", imageUrl: "https://img.pngio.com/-doge-head-png-400_400.png")
-    //    }
-    //    .padding(.bottom)
   }
   
   var articles: some View {

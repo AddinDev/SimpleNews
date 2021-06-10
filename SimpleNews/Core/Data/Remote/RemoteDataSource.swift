@@ -44,7 +44,7 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
   
   func searchNews(_ word: String) -> AnyPublisher<[NewsResponse], Error> {
     return Future<[NewsResponse], Error> { completion in
-      guard let url = URL(string: Api.searchNewsApi + word + Api.newsKey) else { return }
+      guard let url = URL(string: Api.searchNewsApi + word.lowercased() + Api.newsKey) else { return }
       AF.request(url)
         .validate()
         .responseDecodable(of: RemoteResponse.self) { response in

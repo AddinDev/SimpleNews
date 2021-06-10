@@ -11,6 +11,8 @@ struct SearchNewsView: View {
   
   @ObservedObject var presenter: SearchNewsPresenter
   
+  @State private var showCancelBtn = false
+  
   var body: some View {
     content
       .navigationBarTitle("Search", displayMode: .inline)
@@ -30,12 +32,29 @@ extension SearchNewsView {
     }
   
   var searchBar: some View {
+    HStack {
     TextField("Search News", text: $presenter.keyword)
-      .padding(5)
+      .padding(8)
       .background(Color(.systemGray6))
       .cornerRadius(7)
-      .padding(.horizontal)
-      .padding(.top, 10)
+      if showCancelBtn {
+      Button(action: {
+        withAnimation(.linear) {
+        presenter.keyword = ""
+          UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        showCancelBtn = false
+        }
+      }) {
+        Text("Cancel")
+      }
+      }
+    }
+    .padding()
+    .onTapGesture {
+      withAnimation(.spring(response: 0.5, dampingFraction: 0.7, blendDuration: 1)) {
+      showCancelBtn = true
+      }
+    }
   }
   
   var list: some View {

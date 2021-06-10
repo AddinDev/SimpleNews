@@ -39,7 +39,7 @@ extension NewsListItem {
           .frame(width: 75, height: 75)
         
       } else {
-        WebImage(url: URL(string: news.imageUrl)!)
+        WebImage(url: URL(string: news.imageUrl))
           .renderingMode(.original)
           .resizable()
           .indicator(.activity)
